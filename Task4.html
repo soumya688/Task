@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Age Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: darkkhaki;
+        }
+
+        #app {
+            max-width: 400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #result {
+            font-size: 24px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Age Calculator</h1>
+        <label for="dob">Date of Birth:</label>
+        <input type="date" id="dob">
+        <button id="calculate">Calculate Age</button>
+        <div id="result"></div>
+    </div>
+
+    <script>
+        const calculateButton = document.getElementById("calculate");
+        const dobInput = document.getElementById("dob");
+        const resultDiv = document.getElementById("result");
+
+        calculateButton.addEventListener("click", function() {
+            const dob = new Date(dobInput.value);
+            const today = new Date();
+            const ageInMilliseconds = today - dob;
+            const ageInSeconds = ageInMilliseconds / 1000;
+            const ageInMinutes = ageInSeconds / 60;
+            const ageInHours = ageInMinutes / 60;
+            const ageInDays = ageInHours / 24;
+            const ageInYears = ageInDays / 365;
+
+            const age = Math.floor(ageInYears);
+            if (isNaN(age)){
+                alert("Please Enter Valid Date");
+            }
+            else{
+                resultDiv.textContent = `Your age is approximately ${age} years.`;
+            }
+        });
+    </script>
+</body>
+</html>
